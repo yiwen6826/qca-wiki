@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import { starlightKatex } from 'starlight-katex';
 
 // https://astro.build/config
 export default defineConfig({
@@ -8,14 +9,8 @@ export default defineConfig({
 		starlight({
 			title: 'QC |101>',
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+			plugins: [starlightKatex()],
 			sidebar: [
-				{
-					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
-					],
-				},
 				{ 
 					label: 'Qubits',
 					items: [
@@ -24,8 +19,9 @@ export default defineConfig({
 							items: ['qubits/basic-info-theory/bloch-sphere'],
 						},
 						{ 
-							label: 'Hardware Implementations of Qubits', 
-							items: ['qubits/hardware-impl/superconducting',
+							label: 'Hardware Implementations', 
+							items: ['qubits/hardware-impl/intro',
+									'qubits/hardware-impl/superconducting',
 									'qubits/hardware-impl/photonics',
 									'qubits/hardware-impl/trapped-ions',
 									'qubits/hardware-impl/topological',
@@ -33,6 +29,16 @@ export default defineConfig({
 									'qubits/hardware-impl/quantum-dot',
 							],
 						},
+					],
+				},
+				{
+					label: 'Gates',
+					items: [
+						{	label: 'Single-Qubit Gates', 
+							items: ['gates/single-qubit-gates/intro',
+									'gates/single-qubit-gates/unitary',
+									'gates/single-qubit-gates/useful',
+							]},
 					],
 				},
 				{
