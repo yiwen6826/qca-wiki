@@ -23,7 +23,7 @@ $
 \end{pmatrix}
 $
 , the resulting qubit state would be
-$
+$$
 \ket{q'} = 
 \ket{q} \cdot 
 \begin{pmatrix}
@@ -41,8 +41,8 @@ $
 \begin{pmatrix}
 \beta \\
 \alpha \\
-\end{pmatrix}
-$.
+\end{pmatrix}.
+$$
 
 :::note
 When writing out the matrix multiplication, we must put the gate before the qubit to obey the proper matrix dimensions.
