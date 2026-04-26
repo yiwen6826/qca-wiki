@@ -34,13 +34,10 @@ export default defineConfig({
 				},
 				{
 					label: 'Gates',
-					items: [
-						{	label: 'Single-Qubit Gates', 
-							items: ['gates/single-qubit-gates/intro',
-									'gates/single-qubit-gates/unitary',
-									'gates/single-qubit-gates/useful',
-									'gates/single-qubit-gates/multi-qubit',
-							]},
+					items: ['gates/intro',
+							'gates/unitary',
+							'gates/useful',
+							'gates/multi-qubit',
 					],
 				},
 				{
