@@ -39,6 +39,7 @@ export default defineConfig({
 							items: ['gates/single-qubit-gates/intro',
 									'gates/single-qubit-gates/unitary',
 									'gates/single-qubit-gates/useful',
+									'gates/single-qubit-gates/multi-qubit',
 							]},
 					],
 				},
