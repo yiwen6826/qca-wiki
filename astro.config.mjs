@@ -21,6 +21,7 @@ export default defineConfig({
 						{ 
 							label: 'Hardware Implementations', 
 							items: ['qubits/hardware-impl/intro',
+									'qubits/hardware-impl/divincenzo',
 									'qubits/hardware-impl/superconducting',
 									'qubits/hardware-impl/photonics',
 									'qubits/hardware-impl/trapped-ions',
