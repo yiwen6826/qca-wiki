@@ -119,7 +119,7 @@ That is enough to move from "what is a qubit?" to "how do quantum states evolve?
 
 ## Continue
 
-- [Superposition and Quantum Gates](/fundamentals/week-2/)
+- [Superposition and Quantum Gates](/fundamentals/superposition-and-gates/)
 - [Qubit Mathematics](/qubits/basic-info-theory/qubit-math/)
 - [The Bloch Sphere](/qubits/basic-info-theory/bloch-sphere/)
 

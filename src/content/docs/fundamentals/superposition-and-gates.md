@@ -111,6 +111,7 @@ After this page, you should be able to:
 
 ## Continue
 
+- [Entanglement](/fundamentals/entanglement/)
 - [Qubit Mathematics](/qubits/basic-info-theory/qubit-math/)
 - [The Bloch Sphere](/qubits/basic-info-theory/bloch-sphere/)
 - [Deutsch's Algorithm](/algorithms/deutsch-algorithm/)

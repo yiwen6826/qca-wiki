@@ -11,14 +11,15 @@ This section is the main conceptual starting point for the wiki. It is meant to 
 
 If you want a clean path, read the pages in this order:
 
-1. [Bits, Qubits, and Measurement](/fundamentals/week-1/)
-2. [Superposition and Quantum Gates](/fundamentals/week-2/)
-3. [Qubit Mathematics](/qubits/basic-info-theory/qubit-math/)
-4. [The Bloch Sphere](/qubits/basic-info-theory/bloch-sphere/)
-5. [Deutsch's Algorithm](/algorithms/deutsch-algorithm/)
-6. [Quantum Teleportation](/algorithms/quantum-teleportation/)
-7. [Grover's Search](/algorithms/grovers-search/)
-8. [Shor's Algorithm](/algorithms/shors-algorithm/)
+1. [Bits, Qubits, and Measurement](/fundamentals/qubits-and-measurement/)
+2. [Superposition and Quantum Gates](/fundamentals/superposition-and-gates/)
+3. [Entanglement](/fundamentals/entanglement/)
+4. [Qubit Mathematics](/qubits/basic-info-theory/qubit-math/)
+5. [The Bloch Sphere](/qubits/basic-info-theory/bloch-sphere/)
+6. [Deutsch's Algorithm](/algorithms/deutsch-algorithm/)
+7. [Quantum Teleportation](/algorithms/quantum-teleportation/)
+8. [Grover's Search](/algorithms/grovers-search/)
+9. [Shor's Algorithm](/algorithms/shors-algorithm/)
 
 ## How the Path Fits Together
 
