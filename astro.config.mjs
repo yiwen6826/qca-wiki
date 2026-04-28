@@ -11,12 +11,31 @@ export default defineConfig({
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
 			plugins: [starlightKatex()],
 			sidebar: [
+				{
+					label: 'Foundations',
+					autogenerate: { directory: 'fundamentals' },
+				},
+				{
+					label: 'Algorithms & Protocols',
+					autogenerate: { directory: 'algorithms' },
+				},
+				{
+					label: 'Workshops',
+					autogenerate: { directory: 'workshops' },
+				},
+				{
+					label: 'Archive',
+					autogenerate: { directory: 'archive' },
+				},
 				{ 
 					label: 'Qubits',
 					items: [
 						{ 
 							label: 'Basic Information Theory', 
-							items: ['qubits/basic-info-theory/bloch-sphere'],
+							items: [
+								'qubits/basic-info-theory/qubit-math',
+								'qubits/basic-info-theory/bloch-sphere',
+							],
 						},
 						{ 
 							label: 'Hardware Implementations', 
@@ -39,6 +58,21 @@ export default defineConfig({
 									'gates/single-qubit-gates/unitary',
 									'gates/single-qubit-gates/useful',
 							]},
+					],
+				},
+				{
+					label: 'NISQ',
+					items: [
+						'nisq/intro',
+						'nisq/review',
+						'nisq/mapping',
+						'nisq/simulation',
+						'nisq/hamiltonian-simulation',
+						'nisq/optimization',
+						'nisq/circuit-optimization',
+						'nisq/qaoa',
+						'nisq/vqe',
+						'nisq/error-mitigation',
 					],
 				},
 				{
