@@ -11,12 +11,20 @@ export default defineConfig({
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
 			plugins: [starlightKatex()],
 			sidebar: [
+				{
+					label: 'Quantum Computing',
+					items: ['qc/intro',
+							'qc/phys',
+					],
+				},
 				{ 
 					label: 'Qubits',
 					items: [
 						{ 
 							label: 'Basic Information Theory', 
-							items: ['qubits/basic-info-theory/bloch-sphere'],
+							items: ['qubits/basic-info-theory/bloch-sphere',
+									'qubits/basic-info-theory/quantum-states',
+							],
 						},
 						{ 
 							label: 'Hardware Implementations', 
@@ -39,6 +47,10 @@ export default defineConfig({
 							'gates/useful',
 							'gates/multi-qubit',
 					],
+				},
+				{
+					label: 'Circuits',
+					items: [ 'circuits/intro', ],
 				},
 				{
 					label: 'Reference',
