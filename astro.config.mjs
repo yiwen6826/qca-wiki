@@ -51,7 +51,7 @@ export default defineConfig({
 				{
 					label: 'Circuits',
 					collapsed: true,
-					items: ['circuits/intro'],
+					items: ['circuits/intro', 'circuits/qiskit-examples'],
 				},
 				{
 					label: 'Algorithms & Protocols',
