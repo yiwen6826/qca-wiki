@@ -14,13 +14,11 @@ export default defineConfig({
 				{
 					label: 'Foundations',
 					autogenerate: { directory: 'fundamentals' },
-				},
-				{
-					label: 'Quantum Computing',
-					items: ['qc/intro', 'qc/phys'],
+					collapsed: true,
 				},
 				{
 					label: 'Qubits',
+					collapsed: true,
 					items: [
 						{
 							label: 'Basic Information Theory',
@@ -34,7 +32,6 @@ export default defineConfig({
 							label: 'Hardware Implementations',
 							items: [
 								'qubits/hardware-impl/intro',
-								'qubits/hardware-impl/divincenzo',
 								'qubits/hardware-impl/superconducting',
 								'qubits/hardware-impl/photonics',
 								'qubits/hardware-impl/trapped-ions',
@@ -47,26 +44,22 @@ export default defineConfig({
 				},
 				{
 					label: 'Gates',
+					collapsed: true,
 					items: ['gates/intro', 'gates/unitary', 'gates/useful', 'gates/multi-qubit'],
 				},
 				{
 					label: 'Circuits',
+					collapsed: true,
 					items: ['circuits/intro'],
 				},
 				{
 					label: 'Algorithms & Protocols',
+					collapsed: true,
 					autogenerate: { directory: 'algorithms' },
 				},
 				{
-					label: 'Workshops',
-					autogenerate: { directory: 'workshops' },
-				},
-				{
-					label: 'Archive',
-					autogenerate: { directory: 'archive' },
-				},
-				{
 					label: 'NISQ',
+					collapsed: true,
 					items: [
 						'nisq/intro',
 						'nisq/review',
@@ -81,8 +74,14 @@ export default defineConfig({
 					],
 				},
 				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					label: 'Workshops',
+					collapsed: true,
+					autogenerate: { directory: 'workshops' },
+				},
+				{
+					label: 'Archive',
+					collapsed: true,
+					autogenerate: { directory: 'archive' },
 				},
 			],
 		}),
