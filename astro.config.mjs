@@ -22,14 +22,15 @@ export default defineConfig({
 					items: [
 						{
 							label: 'Basic Information Theory',
+							collapsed: true,
 							items: [
 								'qubits/basic-info-theory/qubit-math',
 								'qubits/basic-info-theory/bloch-sphere',
-								'qubits/basic-info-theory/quantum-states',
 							],
 						},
 						{
 							label: 'Hardware Implementations',
+							collapsed: true,
 							items: [
 								'qubits/hardware-impl/intro',
 								'qubits/hardware-impl/superconducting',
