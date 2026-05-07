@@ -104,7 +104,7 @@ Classical systems can be correlated. Entangled systems are correlated in a stron
 
 ### Not faster-than-light signaling
 
-Entanglement produces unusual correlations, but it does not let one party choose a measurement outcome and send a controllable message instantly.
+Entanglement produces unusual correlations, but it does not let one party choose a measurement outcome and send a controllable message instantly. Even though the correlations between the two states are instantaneous, it can not be used to transmit usable information instantaneously. It still requires normal, slower than light, forms of communication.
 
 ## Why Entanglement Matters
 
