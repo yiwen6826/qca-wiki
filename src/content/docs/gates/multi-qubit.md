@@ -1,22 +1,28 @@
 ---
 title: Multi-Qubit Gates
+description: Gates that connect qubits and create entanglement.
 ---
 
-Single-qubit gates can rotate one qubit around the Bloch sphere, but they cannot create entanglement by themselves. To build genuinely quantum circuits, we need gates that act on more than one qubit at a time.
+Single-qubit gates rotate individual qubits. Multi-qubit gates create relationships between qubits, which is where entanglement and conditional quantum logic enter the circuit model.
 
-Multi-qubit gates are represented by larger unitary matrices. A two-qubit gate acts on a four-dimensional state vector because the computational basis has four states:
+A two-qubit state has four computational basis states:
 
 $$
 \ket{00}, \ket{01}, \ket{10}, \ket{11}.
 $$
 
-So a general two-qubit state looks like
+So a general two-qubit state is
 
 $$
-\ket{\psi} = \alpha\ket{00} + \beta\ket{01} + \gamma\ket{10} + \delta\ket{11},
+\ket{\psi}
+=
+\alpha\ket{00}
++ \beta\ket{01}
++ \gamma\ket{10}
++ \delta\ket{11},
 $$
 
-where
+with
 
 $$
 |\alpha|^2 + |\beta|^2 + |\gamma|^2 + |\delta|^2 = 1.
@@ -24,114 +30,30 @@ $$
 
 ## Tensor Products
 
-When two independent qubits are put together, their joint state is written with the tensor product $\otimes$.
-
-For example, if the first qubit is $\ket{0}$ and the second qubit is $\ket{1}$, then the combined state is
+Joint states are written with the tensor product $\otimes$. For example,
 
 $$
 \ket{0} \otimes \ket{1} = \ket{01}.
 $$
 
-In vector form,
+In the basis ordering used here,
 
 $$
 \ket{01}
 =
 \begin{pmatrix}
-1 \\
-0
-\end{pmatrix}
-\otimes
-\begin{pmatrix}
-0 \\
-1
-\end{pmatrix}
-=
-\begin{pmatrix}
 0 \\
 1 \\
 0 \\
 0
-\end{pmatrix}.
-$$
-
-The standard ordering used here is
-
-$$
-\ket{00} =
-\begin{pmatrix}
-1 \\
-0 \\
-0 \\
-0
-\end{pmatrix},
-\quad
-\ket{01} =
-\begin{pmatrix}
-0 \\
-1 \\
-0 \\
-0
-\end{pmatrix},
-\quad
-\ket{10} =
-\begin{pmatrix}
-0 \\
-0 \\
-1 \\
-0
-\end{pmatrix},
-\quad
-\ket{11} =
-\begin{pmatrix}
-0 \\
-0 \\
-0 \\
-1
 \end{pmatrix}.
 $$
 
 :::note
-Different software libraries sometimes use different qubit-ordering conventions. The physics is the same, but the matrix representation may look transposed or reordered if the basis order changes.
+Software libraries sometimes use different qubit-ordering conventions. The circuit can be the same while the printed vector or matrix looks reordered.
 :::
 
-## Applying a Single-Qubit Gate Inside a Larger System
-
-If we want to apply an $X$ gate to the second qubit while leaving the first qubit alone, we use
-
-$$
-I \otimes X.
-$$
-
-Since
-
-$$
-I =
-\begin{pmatrix}
-1 & 0 \\
-0 & 1
-\end{pmatrix},
-\qquad
-X =
-\begin{pmatrix}
-0 & 1 \\
-1 & 0
-\end{pmatrix},
-$$
-
-we get
-
-$$
-I \otimes X =
-\begin{pmatrix}
-0 & 1 & 0 & 0 \\
-1 & 0 & 0 & 0 \\
-0 & 0 & 0 & 1 \\
-0 & 0 & 1 & 0
-\end{pmatrix}.
-$$
-
-This flips the second bit of each basis state:
+If an $X$ gate acts on the second qubit while the first is left alone, the full operation is $I \otimes X$. This flips
 
 $$
 \ket{00} \leftrightarrow \ket{01},
@@ -139,16 +61,14 @@ $$
 \ket{10} \leftrightarrow \ket{11}.
 $$
 
-## The CNOT Gate
+## CNOT
 
-The **controlled-NOT gate**, usually written `CNOT` or `CX`, is one of the most important two-qubit gates. It has a **control** qubit and a **target** qubit.
+The controlled-NOT gate, written `CNOT` or `CX`, has a control qubit and a target qubit.
 
-The rule is simple:
+- if the control is $\ket{0}$, do nothing
+- if the control is $\ket{1}$, apply $X$ to the target
 
-- if the control qubit is $\ket{0}$, do nothing
-- if the control qubit is $\ket{1}$, apply $X$ to the target qubit
-
-With the first qubit as control and the second qubit as target,
+With the first qubit as control,
 
 $$
 CNOT\ket{00} = \ket{00},
@@ -162,51 +82,25 @@ CNOT\ket{10} = \ket{11},
 CNOT\ket{11} = \ket{10}.
 $$
 
-Its matrix is
-
-$$
-CNOT =
-\begin{pmatrix}
-1 & 0 & 0 & 0 \\
-0 & 1 & 0 & 0 \\
-0 & 0 & 0 & 1 \\
-0 & 0 & 1 & 0
-\end{pmatrix}.
-$$
-
-The CNOT gate is reversible. Applying it twice gives the identity:
-
-$$
-CNOT^2 = I.
-$$
+This is the basic two-qubit gate used to spread information from one qubit into another.
 
 ## Creating Entanglement
 
-CNOT is especially important because it can turn a product state into an entangled state.
-
-Start with two qubits in $\ket{00}$. Apply a Hadamard gate to the first qubit:
+A Hadamard followed by CNOT creates a Bell state:
 
 $$
 \ket{00}
 \xrightarrow{H \otimes I}
-\frac{1}{\sqrt{2}}(\ket{00} + \ket{10}).
-$$
-
-Now apply CNOT with the first qubit as control:
-
-$$
-\frac{1}{\sqrt{2}}(\ket{00} + \ket{10})
+\frac{\ket{00} + \ket{10}}{\sqrt{2}}
 \xrightarrow{CNOT}
-\frac{1}{\sqrt{2}}(\ket{00} + \ket{11}).
+\frac{\ket{00} + \ket{11}}{\sqrt{2}}.
 $$
 
-The final state is a Bell state. It cannot be separated into "the state of the first qubit" and "the state of the second qubit." The information is stored in the pair.
+The final state cannot be separated into one state for the first qubit and one state for the second. The information is stored in the pair.
 
-## Controlled Gates
+## Other Common Multi-Qubit Gates
 
-CNOT is one example of a broader idea: a **controlled gate** applies some operation only when the control qubit is $\ket{1}$.
-
-If $U$ is a single-qubit gate, then the controlled-$U$ gate acts like this:
+Controlled gates generalize the CNOT idea. If $U$ is a one-qubit gate, controlled-$U$ applies $U$ to the target only when the control is $\ket{1}$:
 
 $$
 \ket{0}\ket{\psi} \mapsto \ket{0}\ket{\psi},
@@ -214,103 +108,30 @@ $$
 \ket{1}\ket{\psi} \mapsto \ket{1}U\ket{\psi}.
 $$
 
-In matrix form,
+The controlled-Z gate, or `CZ`, changes only the phase of $\ket{11}$:
 
 $$
-C(U) =
-\begin{pmatrix}
-1 & 0 & 0 & 0 \\
-0 & 1 & 0 & 0 \\
-0 & 0 & u_{00} & u_{01} \\
-0 & 0 & u_{10} & u_{11}
-\end{pmatrix}.
+CZ\ket{11} = -\ket{11},
 $$
 
-Setting $U = X$ gives CNOT.
+while leaving $\ket{00}$, $\ket{01}$, and $\ket{10}$ unchanged.
 
-## The CZ Gate
-
-Another useful controlled gate is the **controlled-Z gate**, or `CZ`.
-
-The $Z$ gate changes the sign of $\ket{1}$, so `CZ` changes the sign only when both qubits are $\ket{1}$:
-
-$$
-CZ\ket{00} = \ket{00},
-\qquad
-CZ\ket{01} = \ket{01},
-$$
-
-$$
-CZ\ket{10} = \ket{10},
-\qquad
-CZ\ket{11} = -\ket{11}.
-$$
-
-Its matrix is
-
-$$
-CZ =
-\begin{pmatrix}
-1 & 0 & 0 & 0 \\
-0 & 1 & 0 & 0 \\
-0 & 0 & 1 & 0 \\
-0 & 0 & 0 & -1
-\end{pmatrix}.
-$$
-
-This gate does not flip either qubit. Instead, it introduces a relative phase, which can later change measurement probabilities through interference.
-
-## The SWAP Gate
-
-The **SWAP gate** exchanges the states of two qubits:
+The `SWAP` gate exchanges two qubits:
 
 $$
 SWAP\ket{a}\ket{b} = \ket{b}\ket{a}.
 $$
 
-On basis states,
-
-$$
-SWAP\ket{00} = \ket{00},
-\qquad
-SWAP\ket{01} = \ket{10},
-$$
-
-$$
-SWAP\ket{10} = \ket{01},
-\qquad
-SWAP\ket{11} = \ket{11}.
-$$
-
-Its matrix is
-
-$$
-SWAP =
-\begin{pmatrix}
-1 & 0 & 0 & 0 \\
-0 & 0 & 1 & 0 \\
-0 & 1 & 0 & 0 \\
-0 & 0 & 0 & 1
-\end{pmatrix}.
-$$
-
-SWAP is useful when two qubits need to trade places in a circuit. On real hardware, this often matters because not every physical qubit can directly interact with every other physical qubit.
+On real hardware, SWAPs matter because not every physical qubit can directly interact with every other one.
 
 ## Why Multi-Qubit Gates Matter
 
-Single-qubit gates change individual states. Multi-qubit gates create relationships between qubits.
+Without multi-qubit gates, a quantum computer would be a collection of independent qubits. With them, circuits can create entanglement, express conditional logic, and route information through hardware layouts.
 
-This is what makes them central to quantum computing:
-
-- CNOT and CZ can create entanglement
-- controlled gates let one qubit condition the evolution of another
-- SWAP gates move quantum information through hardware layouts
-- many quantum algorithms rely on interference between multi-qubit branches
-
-Without multi-qubit gates, a quantum computer would just be a collection of independent qubits. With them, circuits can build entangled states, perform conditional logic, and express computations that have no direct classical analogue.
+That is why gates such as `CNOT`, `CZ`, and `SWAP` show up throughout algorithms, teleportation, and NISQ compilation.
 
 ## Continue
 
-- [Entanglement](/fundamentals/entanglement/)
 - [Intro to Quantum Circuits](/circuits/intro/)
+- [Entanglement](/fundamentals/entanglement/)
 - [Quantum Teleportation](/algorithms/quantum-teleportation/)

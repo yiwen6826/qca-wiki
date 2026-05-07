@@ -1,40 +1,90 @@
 ---
 title: Useful Single-Qubit Gates
+description: The basic one-qubit gate vocabulary.
 ---
-So far, we have seen the quantum $X$ gate and its physical implications on a single qubit. Now we will introduce several other useful single-qubit gates.
+
+Single-qubit gates rotate one qubit around the Bloch sphere. A small set appears constantly in circuits, algorithms, and error correction.
 
 ## Pauli Gates
-The Pauli gates are a trio of fundamental, single-qubit unitary operations that are crucial for algorithms like quantum error correction. Each corresponds to a Pauli matrix $\sigma_x$, $\sigma_y$, or $\sigma_z$ with the property that their square is the identity matrix ($X^2 = Y^2 = Z^2 = I$). We have already seen one of them: the X gate. The other two — the Y and Z gates — are introduced below.
 
-### The Z Gate
-The Z gate can be represented as the matrix
-$
-\begin{pmatrix}
-1 & 0 \\
-0 & -1 \\
-\end{pmatrix}.
-$
-On the Bloch sphere, it performs a 180° rotation around the Z-axis, effectively introducing a phase to the $\ket{1}$ component. Importantly, this does not change the measurement probabilities of the qubit.
+The Pauli gates are $X$, $Y$, and $Z$. Each is unitary, and each squares to the identity:
 
-### The Y Gate
-The matrix for the Y gate is
-$
+$$
+X^2 = Y^2 = Z^2 = I.
+$$
+
+The $X$ gate flips computational basis states:
+
+$$
+X\ket{0} = \ket{1},
+\qquad
+X\ket{1} = \ket{0}.
+$$
+
+The $Z$ gate leaves $\ket{0}$ alone and changes the sign of $\ket{1}$:
+
+$$
+Z\ket{0} = \ket{0},
+\qquad
+Z\ket{1} = -\ket{1}.
+$$
+
+This changes relative phase without changing immediate computational-basis measurement probabilities.
+
+The $Y$ gate combines a bit flip with a phase change:
+
+$$
+Y =
 \begin{pmatrix}
 0 & -i \\
-i & 0 \\
+i & 0
 \end{pmatrix}.
-$
-It similarly performs a 180° rotation around its namesake Y-axis, acting as both a bit-flip (X gate) and a phase-flip (Z gate) simultaneously.
+$$
 
-## The H Gate
-The **Hadamard gate**, also known as the H gate, is a special gate in quantum computing that puts classical states into superposition. On the Bloch sphere, it is a 180° rotation around an axis halfway between the x- and z-axes. 
+## Hadamard Gate
 
-It is represented in matrix form as 
-$H = \frac{1}{\sqrt2}
+The Hadamard gate, written $H$, is the standard way to create balanced superpositions from basis states:
+
+$$
+H\ket{0} = \frac{\ket{0} + \ket{1}}{\sqrt{2}},
+\qquad
+H\ket{1} = \frac{\ket{0} - \ket{1}}{\sqrt{2}}.
+$$
+
+Its matrix is
+
+$$
+H = \frac{1}{\sqrt{2}}
 \begin{pmatrix}
 1 & 1 \\
-1 & -1 \\
-\end{pmatrix}.$
-Applying the H gate to the $\ket{0}$ state results in the $\ket{+}$ state $\frac{1}{\sqrt2}(\ket{0} + \ket{1})$, while applying the H gate to the $\ket{1}$ state results in the $\ket{-}$ state $\frac{1}{\sqrt2}(\ket{0} - \ket{1})$. 
+1 & -1
+\end{pmatrix}.
+$$
 
-Try to convince yourself that this is true!
+Hadamards are common because they move information between the computational basis and the superposition basis. Many algorithms begin by applying $H$ gates so later operations can create interference.
+
+## Phase Gates
+
+Two other common single-qubit gates are $S$ and $T$:
+
+$$
+S =
+\begin{pmatrix}
+1 & 0 \\
+0 & i
+\end{pmatrix},
+\qquad
+T =
+\begin{pmatrix}
+1 & 0 \\
+0 & e^{i\pi/4}
+\end{pmatrix}.
+$$
+
+Like $Z$, they change phase rather than directly flipping measurement probabilities.
+
+## Continue
+
+- [Multi-Qubit Gates](/gates/multi-qubit/)
+- [Intro to Quantum Circuits](/circuits/intro/)
+- [Superposition and Quantum Gates](/fundamentals/superposition-and-gates/)

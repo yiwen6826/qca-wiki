@@ -1,51 +1,74 @@
 ---
 title: Introduction
+description: Gates as linear operations on qubit amplitudes.
 ---
-### Classical Computing
-In classical computing, the only gate we can nontrivially apply to a single bit is the NOT gate. This changes the bit from 0 to 1 and 1 to 0. Similarly, we can apply a NOT gate (also referred to as the $X$ gate) to a single qubit, changing the quantum state from $\ket{0}$ to $\ket{1}$ and vice versa. 
 
-### The Quantum NOT
-What if a qubit is in some superposition of $\ket{0}$ and $\ket{1}$? This is where the $X$ gate differs from its classical twin. The quantum $X$ gate — and in fact any single-qubit quantum gate — can be represented by a 2x2 matrix. Specifically, the matrix 
-$ X \equiv
-\begin{pmatrix}
-0 & 1 \\
-1 & 0 \\
-\end{pmatrix}
-$
-. 
+Quantum gates are the operations that change qubit states. In the vector model, a gate is a matrix and applying the gate means multiplying that matrix into the state vector.
 
-So, if we were to write a qubit in vector notation as 
-$
-\ket{q} =
-\begin{pmatrix}
-\alpha \\
-\beta \\
-\end{pmatrix}
-$
-, the resulting qubit state would be
+For one qubit,
+
 $$
-\ket{q'} = 
-\ket{q} \cdot 
-\begin{pmatrix}
-0 & 1 \\
-1 & 0 \\
-\end{pmatrix} = 
+\ket{\psi} = \alpha\ket{0} + \beta\ket{1}
+=
 \begin{pmatrix}
 \alpha \\
-\beta \\
-\end{pmatrix} \cdot
-\begin{pmatrix}
-0 & 1 \\
-1 & 0 \\
-\end{pmatrix} = 
-\begin{pmatrix}
-\beta \\
-\alpha \\
+\beta
 \end{pmatrix}.
 $$
 
+## From Classical NOT to Quantum X
+
+Classically, the simplest single-bit gate is `NOT`: it sends `0` to `1` and `1` to `0`.
+
+The quantum version is the $X$ gate:
+
+$$
+X =
+\begin{pmatrix}
+0 & 1 \\
+1 & 0
+\end{pmatrix}.
+$$
+
+It swaps the two amplitudes:
+
+$$
+X\ket{\psi}
+=
+\begin{pmatrix}
+0 & 1 \\
+1 & 0
+\end{pmatrix}
+\begin{pmatrix}
+\alpha \\
+\beta
+\end{pmatrix}
+=
+\begin{pmatrix}
+\beta \\
+\alpha
+\end{pmatrix}.
+$$
+
+So $X$ flips the probabilities of measuring $\ket{0}$ and $\ket{1}$.
+
 :::note
-When writing out the matrix multiplication, we must put the gate before the qubit to obey the proper matrix dimensions.
+Gates multiply state vectors from the left. If a circuit applies $A$ and then $B$, the algebra is written $BA\ket{\psi}$.
 :::
 
-As you can see, the $X$ gate flips $\alpha$ and $\beta$ such that the probabilities of measuring $\ket{0}$ and $\ket{1}$ are flipped.
+## Why Gates Are Different
+
+Quantum gates act on amplitudes, not just measured bits. This means they can change phases and create interference effects that have no direct classical analogue.
+
+The rest of this chapter builds the basic gate vocabulary:
+
+- unitary matrices
+- Pauli gates
+- Hadamard gates
+- multi-qubit gates such as `CNOT`
+
+## Continue
+
+- [The Normalization Condition](/gates/unitary/)
+- [Useful Single-Qubit Gates](/gates/useful/)
+- [Multi-Qubit Gates](/gates/multi-qubit/)

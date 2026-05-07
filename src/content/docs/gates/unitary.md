@@ -1,49 +1,79 @@
 ---
 title: The Normalization Condition
+description: Why valid quantum gates must be unitary.
 ---
 
-### Unitarianism
-Notice that the qubit remains normalized after a gate is applied (reminder: this means that the sum of the probabilities of measuring $\ket{0}$ and $\ket{1}$ is 1). This turns out to be the criterion for any single-qubit gate: it can be represented a unitary matrix $U$ such that $U^{\dagger}U = I$, where $U^{\dagger}$ (read: U dagger) is the adjoint of $U$ and $I$ is the 2x2 identity matrix. 
-:::note
-The adjoint (or adjugate) of a matrix first transposes it, then takes its complex conjugate. For example, the adjoint of the matrix 
-$
-M = 
+Quantum states must stay normalized: the total probability of all measurement outcomes has to remain `1`. This requirement strongly restricts which matrices can count as physical gates.
+
+## Unitary Matrices
+
+A valid closed-system quantum gate is represented by a **unitary** matrix $U$:
+
+$$
+U^\dagger U = I.
+$$
+
+Here $U^\dagger$ is the adjoint of $U$: transpose the matrix, then take the complex conjugate of each entry.
+
+For example, if
+
+$$
+M =
 \begin{pmatrix}
 M_{11} & M_{12} \\
 M_{21} & M_{22}
-\end{pmatrix}
-$
-is 
-$
-M^{\dagger} = 
+\end{pmatrix},
+$$
+
+then
+
+$$
+M^\dagger =
 \begin{pmatrix}
 M_{11}^* & M_{21}^* \\
 M_{12}^* & M_{22}^*
-\end{pmatrix},
-$
-where $*$ represents the complex conjugate.
-:::
+\end{pmatrix}.
+$$
 
-Physically, what does this mean? Recall the Bloch sphere, on which qubits are vectors of radius 1 on the unit sphere. A single-qubit gate, therefore, can rotate a vector to any other position on the Bloch sphere. We can also write $U$ out mathematically with the equation
+## Physical Meaning
+
+Unitarity means gates preserve the length of the state vector. On the Bloch sphere, this looks like rotating the state without pushing it inside or outside the sphere.
+
+That is why single-qubit gates can be understood in two equivalent ways:
+
+- algebraically, as matrices acting on amplitudes
+- geometrically, as rotations of the Bloch sphere
+
+The Pauli matrices give the most common rotation axes:
+
 $$
-U(\hat{n}, \chi) = I \cos{\frac{\chi}{2} - i \sin{\frac{\chi}{2}(\hat{n}_x \sigma_x+\hat{n}_y \sigma_y+\hat{n}_z \sigma_z)}},
-$$
-where $\hat{n}$ is the axis around which the qubit is rotated, $\chi$ is the angle of rotation, and $\sigma _x$, $\sigma _y$, and $\sigma _z$ are the Pauli matrices
-$
+X =
 \begin{pmatrix}
 0 & 1 \\
 1 & 0
-\end{pmatrix}
-$, 
-$
+\end{pmatrix},
+\qquad
+Y =
 \begin{pmatrix}
 0 & -i \\
 i & 0
-\end{pmatrix}
-$, and
-$
+\end{pmatrix},
+\qquad
+Z =
 \begin{pmatrix}
 1 & 0 \\
 0 & -1
-\end{pmatrix}
-$, respectively.
+\end{pmatrix}.
+$$
+
+## Why This Matters
+
+Unitarity is the mathematical reason ideal quantum gates are reversible. If $U^\dagger U = I$, then $U^\dagger$ undoes $U$.
+
+Measurement is different: it is not a unitary gate, because it collapses amplitudes into a classical outcome.
+
+## Continue
+
+- [Useful Single-Qubit Gates](/gates/useful/)
+- [The Bloch Sphere](/qubits/basic-info-theory/bloch-sphere/)
+- [Intro to Quantum Circuits](/circuits/intro/)
